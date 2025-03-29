@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Predictor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Predictor</h1>
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="Enter city name">
+            <button onclick="getWeather()">Search</button>
+        </div>
+        
+        <div class="weather-container">
+            <div class="current-weather">
+                <h2>Current Weather</h2>
+                <div class="weather-info">
+                    <div class="info-item">
+                        <span class="label">Temperature:</span>
+                        <span id="currentTemp">--°C</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Feels Like:</span>
+                        <span id="feelsLike">--°C</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Min Temperature:</span>
+                        <span id="minTemp">--°C</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Max Temperature:</span>
+                        <span id="maxTemp">--°C</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Humidity:</span>
+                        <span id="humidity">--%</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Weather:</span>
+                        <span id="weatherDesc">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="future-weather">
+                <h2>Future Predictions</h2>
+                <div id="futurePredictions" class="predictions-grid">
+                    <!-- Future predictions will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
