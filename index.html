@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Predictor</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer>
+(function(){
+  var B="http://localhost:8001",I=39;
+  var s=sessionStorage.getItem("_awas_sid");
+  if(!s){s=crypto.randomUUID?crypto.randomUUID():(Math.random().toString(36).slice(2)+Date.now().toString(36));sessionStorage.setItem("_awas_sid",s)}
+  function send(d){d.bid=I;d.sid=s;var b=JSON.stringify(d);if(navigator.sendBeacon){navigator.sendBeacon(B+"/api/collect",new Blob([b],{type:"application/json"}))}else{fetch(B+"/api/collect",{method:"POST",headers:{"Content-Type":"application/json"},body:b,keepalive:true}).catch(function(){})}}
+  send({t:"pv",url:location.href,ref:document.referrer||"",sw:screen.width});
+  window.addEventListener("load",function(){setTimeout(function(){var n=performance.getEntriesByType("navigation")[0];if(n)send({t:"perf",url:location.href,lt:Math.round(n.loadEventEnd),ttfb:Math.round(n.responseStart)});},200)});
+  window.addEventListener("error",function(e){send({t:"err",url:location.href,em:e.message||"",es:(e.filename||"")+":"+(e.lineno||0)})});
+  window.addEventListener("unhandledrejection",function(e){send({t:"err",url:location.href,em:String(e.reason||"promise_error")})});
+  setInterval(function(){send({t:"hb"})},30000);
+})();
+</script>
 </head>
 <body>
     <div class="container">
